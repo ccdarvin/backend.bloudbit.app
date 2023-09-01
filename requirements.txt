@@ -1,5 +1,8 @@
 fastapi[all]
 uvicorn[standard]
 SQLAlchemy
-aiosqlite
 pydantic-settings
+
+fastapi-users[sqlalchemy]
+aiosqlite
+

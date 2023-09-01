@@ -1,12 +1,11 @@
-from dataclasses import dataclass
-from typing import Union
+from pydantic.dataclasses import dataclass
 
 from fastapi import FastAPI
 from apps.db import init_db
-from apps.auth.models import *
+from apps.auth.routes import router as auth_router
 
 app = FastAPI()
-
+app.include_router(auth_router, prefix="/auth", tags=["auth"])
 
 @dataclass
 class Root:
