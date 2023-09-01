@@ -1,15 +1,11 @@
-from pydantic import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 import os
 
 
 class Settings(BaseSettings):
-    db_url: str
+    database_url: str
+
+    model_config = SettingsConfigDict(env_file='.env.local', env_file_encoding='utf-8')
 
 
-
-if os.getenv("ENV") == "production":
-    settings = Settings()
-elif os.getenv("ENV") == "testing":
-    settings = Settings(_env_file=".env.testing", _env_file_encoding="utf-8")
-else:
-    settings = Settings(_env_file=".env.local", _env_file_encoding="utf-8")
+settings = Settings()

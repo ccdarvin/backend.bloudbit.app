@@ -2,7 +2,8 @@ from dataclasses import dataclass
 from typing import Union
 
 from fastapi import FastAPI
-
+from apps.db import init_db
+from apps.auth.models import *
 
 app = FastAPI()
 
@@ -21,3 +22,7 @@ def get_root() -> Root:
         version="1.0.0",
         url="backend.example.com",
     )
+    
+@app.on_event("startup")
+async def startup_event():
+    await init_db()
